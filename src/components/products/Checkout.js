@@ -1,4 +1,4 @@
-import { CheckoutCard, CheckoutCardBox, CheckoutCardDescripBox, CheckoutCardDescrip, CheckoutCardButtonBox, CheckoutCardButton, CheckoutCardList, CheckoutForm} from "../styled/StyledCheckout";
+import { CheckoutCard, CheckoutCardBox, CheckoutCardDescripBox, CheckoutCardDescrip, CheckoutCardButtonBox, CheckoutCardButton, CheckoutCardList, CheckoutForm, CheckoutTotal} from "../styled/StyledCheckout";
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,14 @@ const Checkout = (props) => {
 
     }
 
+    const sum = () => {
+        let mysum = 0;
+        for(var i=0; i<productCart.length; i++){
+            mysum += (Number(productCart[i].product.price)*productCart[i].quantity);
+        }
+        return mysum;
+    }
+
     return (
         <CheckoutCardList>
         { productCart.length > 0 ? (
@@ -25,24 +33,22 @@ const Checkout = (props) => {
                 Shipping Address: <input type="text" />
                 Billing Address: <input type="text" />
                 Credit Card Info: <input type="text" />
-                <input type="submit" onClick={resetCart}/>
+                <button type="submit" onClick={resetCart}>Submit</button>
             </CheckoutForm>
 
             <CheckoutCardBox>
             {productCart.map(product =>
-                <CheckoutCard type="div">
-                    <CheckoutCardDescripBox>
-                        <CheckoutCardDescrip>{product.product.title}</CheckoutCardDescrip>
-                        <CheckoutCardDescrip>Quantity: {product.quantity}</CheckoutCardDescrip>
-                        
-                    </CheckoutCardDescripBox>      
-                    <CheckoutCardButtonBox>Price: {product.product.price}</CheckoutCardButtonBox>          
-                </CheckoutCard>
-                /*
-                <CheckoutCard 
-                    title={product.product.title}
-                    price={product.product.price}
-                    quantity={product.quantity} />*/
+                <>
+                    <CheckoutCard type="div">
+                        <CheckoutCardDescripBox>
+                            <CheckoutCardDescrip>{product.product.title}</CheckoutCardDescrip>
+                            <CheckoutCardDescrip>Quantity: {product.quantity}</CheckoutCardDescrip>
+                            
+                        </CheckoutCardDescripBox>      
+                        <CheckoutCardButtonBox>Price: {product.product.price}</CheckoutCardButtonBox>          
+                    </CheckoutCard>
+                    <CheckoutTotal>Total: ${sum()}</CheckoutTotal>
+                 </>
             )}
             </CheckoutCardBox>
             </>

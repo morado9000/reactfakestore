@@ -15,7 +15,7 @@ const AppHeader = (props) => {
         <>
             <Header>
                 <HeaderTitle>
-                    <HeaderH1>Fake Store</HeaderH1>
+                    <HeaderH1>This Is (Not) A Real Store</HeaderH1>
                 </HeaderTitle>
                 <HeaderLinks>
                     <Link to="/products" style={{ textDecoration: 'none' }}><HeaderP>Home</HeaderP></Link>

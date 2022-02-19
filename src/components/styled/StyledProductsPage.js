@@ -43,3 +43,7 @@ export const ProductListContainer = styled.div`
     justify-content:center;
     width:70%;
 `
+export const ProductOptionsForm = styled.form`
+    display:flex;
+    flex-direction:column;
+`

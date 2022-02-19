@@ -50,4 +50,9 @@ export const CheckoutForm = styled.form`
     display:flex;
     flex-direction: column;
     width:40%;
+    margin-bottom:10px;
+`
+export const CheckoutTotal = styled.div`
+    display:flex;
+    justify-content:right;
 `

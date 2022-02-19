@@ -87,9 +87,11 @@ const ProductList = (props) => {
                     <input type="radio" name="price" id="lowest" onClick={sortLowest}/>
                     <label for="lowest">Lowest to Highest</label>
                 </form>
+
+                <h2>Search</h2>
                 <form onSubmit={searchList}>
-                    Search: <input type="text" onChange={onSearchChange} />
-                    <input type="submit" />
+                    <input type="text" onChange={onSearchChange} />
+                    <button type="submit">Search</button>
                 </form>
             </ProductOptionsContainer>
             <ProductListContainer type="div">
