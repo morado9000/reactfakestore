@@ -1,22 +1,25 @@
-import { useContext } from "react"
+import { useState, useContext } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { ProductContext } from "../contexts/ProductContext"
 import { ProductContainer, ProductImg, ProductContainerH1, ProductContainerP } from "../styled/StyledProductsPage";
 import { ProductDetailsContainer, ProductDetailsImg } from "../styled/StyledProductDetails";
-import { CartContext } from "../contexts/CartContext";
-import { useState } from "react/cjs/react.development";
+//import { CartContext } from "../contexts/CartContext";
+import { useDispatch } from "react-redux";
+import { appendToCart } from "../../features/cartSlice";
 
 
 const ProductDetails = ({index}, props) => {
     const { products } = useContext(ProductContext);
-    const { appendToCart } = useContext(CartContext);
+//    const { appendToCart } = useContext(CartContext);
+
+    const dispatch = useDispatch();
     const [quantity, setQuantity] = useState("1");
     let params = useParams();
     const navigate = useNavigate();
 
     function append(){
         console.log("Quantity: " + quantity)
-        appendToCart(products[params.index], Number(quantity));
+        dispatch(appendToCart({product: products[params.index], quantity: Number(quantity)}));
     }
 
     function close(){
@@ -33,7 +36,7 @@ const ProductDetails = ({index}, props) => {
               <ProductDetailsImg type="img" src={products[params.index]?.image} />
               <ProductContainerH1>{products[params.index]?.title}</ProductContainerH1>
               <ProductContainerP>{products[params.index]?.price}</ProductContainerP>   
-              <ProductContainerP>{products[params.index]?.category}</ProductContainerP>
+              <ProductContainerP>Category: {products[params.index]?.category}</ProductContainerP>
               <ProductContainerP>{products[params.index]?.description}</ProductContainerP>
               <select 
                 name="quantity" 

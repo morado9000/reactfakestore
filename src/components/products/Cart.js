@@ -1,12 +1,14 @@
-import { useContext } from "react"
-import { CartContext } from "../contexts/CartContext"
+//import { useContext } from "react"
+//import { CartContext } from "../contexts/CartContext"
 import ProductCard from "./ProductCard";
 import { ProductListContainer } from "../styled/StyledProductsPage";
-import { useState } from "react/cjs/react.development";
+import { selectCart } from "../../features/cartSlice";
+import { useSelector } from "react-redux";
 
 const Cart = (props) => {
-    const { productCart } = useContext(CartContext);
-
+    //const { productCart } = useContext(CartContext);
+    const productCart = useSelector(selectCart);
+    console.log(productCart);
     return (
         <>
             { productCart.length > 0 ? (

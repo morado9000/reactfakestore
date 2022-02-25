@@ -1,15 +1,21 @@
 import { CheckoutCard, CheckoutCardBox, CheckoutCardDescripBox, CheckoutCardDescrip, CheckoutCardButtonBox, CheckoutCardButton, CheckoutCardList, CheckoutForm, CheckoutTotal} from "../styled/StyledCheckout";
-import { useContext } from "react";
-import { CartContext } from "../contexts/CartContext";
+//import { useContext } from "react";
+//import { CartContext } from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
+import { selectCart } from "../../features/cartSlice";
+import { clearCart } from "../../features/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Checkout = (props) => {
 
-    const { productCart, clearCart } = useContext(CartContext);
+ //   const { productCart, clearCart } = useContext(CartContext);
+    const productCart = useSelector(selectCart);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
+
     function resetCart(){
-        clearCart();
+        dispatch(clearCart());
         navigate("/products");
 
     }

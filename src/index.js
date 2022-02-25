@@ -11,26 +11,30 @@ import AppHeader from './components/AppHeader';
 import Cart from './components/products/Cart';
 import NotFound from './components/NotFound'
 import Checkout from './components/products/Checkout'
+import { Provider } from 'react-redux';
+import { store } from './app/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProductProvider>
-      <CartProvider>
-        <Router>
-          <Routes>
-            <Route path="/" element={<AppHeader/>} >
-              <Route path="products" element={<App />} >
-                <Route path=":index" element={<ProductDetails />} />
+    <Provider store={store}>
+      <ProductProvider>
+        <CartProvider>
+          <Router basename={process.env.PUBLIC_URL}>
+            <Routes>
+              <Route path="/" element={<AppHeader/>} >
+                <Route path="products" element={<App />} >
+                  <Route path=":index" element={<ProductDetails />} />
+                </Route>
+                <Route path="cart" element={<Cart />} />
+                <Route path="checkout" element={<Checkout />} />
+                <Route path="*" element={<NotFound />} />
+                <Route index element={<Navigate to="/products" />} />
               </Route>
-              <Route path="cart" element={<Cart />} />
-              <Route path="checkout" element={<Checkout />} />
-              <Route path="*" element={<NotFound />} />
-              <Route index element={<Navigate to="/products" />} />
-            </Route>
-          </Routes>
-        </Router>
-      </CartProvider> 
-    </ProductProvider>    
+            </Routes>
+          </Router>
+        </CartProvider> 
+      </ProductProvider> 
+    </Provider>   
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
-import { useContext } from 'react/cjs/react.development';
-import { CartContext } from '../contexts/CartContext';
+//import { useContext } from 'react';
+//import { CartContext } from '../contexts/CartContext';
 import { ProductImg, ProductContainer, ProductContainerP, ProductContainerH1 } from '../styled/StyledProductsPage';
+import { useDispatch } from 'react-redux';
+import { deleteFromCart } from '../../features/cartSlice';
 
 const ProductCard = ({title, price, imageUrl, product, quantity, index}, props) => {
-    const { deleteFromCart } = useContext(CartContext);
+    //const { deleteFromCart } = useContext(CartContext);
 
+    const dispatch = useDispatch();
     function deleteProduct(){
-        deleteFromCart(index);
+        dispatch(deleteFromCart({index: index}));
     }
 
     return (

@@ -1,15 +1,12 @@
-import { useContext, useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { CartContext } from "./contexts/CartContext";
+import { Outlet } from "react-router-dom";
+import { selectCart } from "../features/cartSlice"
 import { Header, HeaderH1, HeaderLinks, HeaderP, HeaderTitle } from "./styled/StyledAppHeader";
 import { Link } from "react-router-dom";
-import App from "../App";
-import { Navigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AppHeader = (props) => {
-    const { productCart } = useContext(CartContext);
+    const productCart = useSelector(selectCart);
 
-    let location = useLocation();
     
     return (
         <>

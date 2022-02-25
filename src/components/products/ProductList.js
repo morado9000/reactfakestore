@@ -1,10 +1,9 @@
-import { useContext, useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../contexts/ProductContext";
 import { ProductListContainer, ProductOptionsContainer, ProductPageContainer } from "../styled/StyledProductsPage";
 import ProductCard from "./ProductCard";
 import { quickSortProducts, quickSortProductsReverse } from "../utils";
-import { Outlet, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ProductList = (props) => {
     const { products } = useContext(ProductContext);
